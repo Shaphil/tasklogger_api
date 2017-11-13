@@ -16,7 +16,7 @@ class DevelopmentConfig(Config):
     DB_PATH = os.path.join(basedir, DB_NAME)
     MYSQL_USER = 'root'
     MYSQL_PASSWORD = ''
-    SQLALCHEMY_DATABASE_URI = 'mysql://{user}:{password}@localhost/{db}'.format(
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{user}:{password}@localhost/{db}'.format(
         user=MYSQL_USER, password=MYSQL_PASSWORD, db=DB_NAME
     )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
