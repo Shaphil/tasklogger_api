@@ -6,8 +6,16 @@ from tasklogger_api.models.task import Task
 task_fields = {
     'id': fields.Integer,
     'name': fields.String,
-    'date': fields.DateTime()
+    'date': fields.DateTime,
+    'uri': fields.Url(endpoint='task', absolute=True)
 }
+
+
+class TaskApi(Resource):
+    @marshal_with(task_fields)
+    def get(self, id):
+        task = Task.query.filter_by(id=id).first()
+        return task
 
 
 class TasksListApi(Resource):

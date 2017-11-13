@@ -7,6 +7,7 @@ app.config.from_object('tasklogger_api.settings.DevelopmentConfig')
 api = Api(app)
 db = SQLAlchemy(app)
 
-from tasklogger_api.resources.task import TasksListApi
+from tasklogger_api.resources.task import TaskApi, TasksListApi
 
 api.add_resource(TasksListApi, '/api/tasks', endpoint='taskslist')
+api.add_resource(TaskApi, '/api/tasks/<id>', endpoint='task')
