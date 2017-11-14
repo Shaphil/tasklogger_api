@@ -32,12 +32,14 @@ class TaskApi(Resource):
         db.session.commit()
         return task, 200
 
-    @marshal_with(task_fields)
     def delete(self, id):
         task = Task.query.get(id)
-        db.session.delete(task)
-        db.session.commit()
-        return 200
+        if task:
+            db.session.delete(task)
+            db.session.commit()
+            return 200
+
+        return abort(400)
 
 
 class TasksListApi(Resource):
