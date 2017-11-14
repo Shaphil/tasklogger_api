@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 
@@ -6,6 +7,7 @@ app = Flask(__name__)
 app.config.from_object('tasklogger_api.settings.DevelopmentConfig')
 api = Api(app)
 db = SQLAlchemy(app)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 from tasklogger_api.resources.task import TaskApi, TasksListApi
 
